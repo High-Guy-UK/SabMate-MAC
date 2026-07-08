@@ -1,0 +1,6 @@
+*.swift text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.pbxproj text eol=lf
+*.png binary
+*.icns binary
