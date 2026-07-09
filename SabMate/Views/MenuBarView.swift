@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MenuBarView: View {
+    @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var sabService: SABnzbdService
     let openMainWindow: () -> Void
 
@@ -57,7 +58,14 @@ struct MenuBarView: View {
             .keyboardShortcut("q")
         }
         .task {
+            sabService.configure(with: settings.connection)
             await sabService.refreshAll(showAlerts: false)
+        }
+        .onChange(of: settings.connection) { _, connection in
+            sabService.configure(with: connection)
+            Task {
+                await sabService.refreshAll(showAlerts: false)
+            }
         }
     }
 }

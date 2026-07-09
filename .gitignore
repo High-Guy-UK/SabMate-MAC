@@ -1,6 +1,7 @@
 .DerivedData/
 DerivedData/
 AppImage/
+release/
 *.xcuserstate
 xcuserdata/
 .DS_Store

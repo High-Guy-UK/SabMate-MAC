@@ -7,6 +7,14 @@ struct SabMateApp: App {
     @StateObject private var settings = AppSettings()
     @StateObject private var sabService = SABnzbdService()
 
+    init() {
+        let appSettings = AppSettings()
+        let appService = SABnzbdService()
+        appService.configure(with: appSettings.connection)
+        _settings = StateObject(wrappedValue: appSettings)
+        _sabService = StateObject(wrappedValue: appService)
+    }
+
     var body: some Scene {
         MenuBarExtra {
             MenuBarView {
